@@ -1,8 +1,8 @@
 ## Two functions are contained within this script: a function that generates a 
 ## special "matrix" object that can cache its inverse (makeCacheMatrix) and a 
-## function that performs the calculates the inverse of the special "matrix" 
-## cacheSolve. In the case that the result was already calculated, it returns 
-## the value from the cache.
+## function that calculates the inverse of the special "matrix" (cacheSolve). 
+## Note that cacheSolve will check if the inverse has already been solved and 
+## will return the value from the cache if it has.
 
 ## The first function, makeCacheMatrix creates a special "matrix", which is  
 ## simply a list containing a function to:
@@ -16,8 +16,8 @@
 
 ## The second function, cacheSolve, calculates the inverse of the matrix 
 ## specified in makeCacheMatrix or pulls the inverse from the cache in the case
-## that it has already been solved by using the special "matrix" created by 
-## makeCacheMatrix.
+## that it has already been solved. The input to this function is the special 
+## "matrix" created by makeCacheMatrix.
 ##   - The first if statement determines if the inverse is stored in the cache 
 ##     and retreives it if available. The return function gets the inverse and 
 ##     concludes the cacheSolve function.
@@ -29,14 +29,14 @@
 ## List of Variables:
 ## x    -> input matrix to be solved. must be square.
 ## inv  -> stores the inverse of the matrix.
-## y    -> new matrix to be assigned to x when makeCacheMatrix$set is called.
+## y    -> new matrix to be assigned to x when set function is called.
 ## data -> holds matrix when x$get called from within cacheSolve.
 ## ____________________________________________________________________________
 
 
 makeCacheMatrix <- function(x = matrix()) {
         inv <- NULL               
-        set <- function(y) {   ## reassigns value of x and resets m
+        set <- function(y) {   ## reassigns value of x and resets inv
                 x <<- y
                 inv <<- NULL
         }
